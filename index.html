@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button1 {border-radius: 8px;}
+.button1 {
+  background-color: rgb(0, 0, 0); 
+}
+</style>
+</head>
+<body>
+<script>
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const randnumbers = []
+  function randlist() {
+    i = 1
+    while (i < 11) {
+      randnumbers.splice(getRndInteger(1, 10), 0, numbers[i-1])
+      i = i+1
+    }
+  }
+  function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+  randlist()
+</script>
+<center>
+<button class="button button1" id=1 onclick="entered(randnumbers[0], 1)">?</button>
+<button class="button button1" id=2 onclick="entered(randnumbers[1], 2)">?</button><br>
+<button class="button button1" id=3 onclick="entered(randnumbers[2], 3)">?</button>
+<button class="button button1" id=4 onclick="entered(randnumbers[3], 4)">?</button><br>
+<button class="button button1" id=5 onclick="entered(randnumbers[4], 5)">?</button>
+<button class="button button1" id=6 onclick="entered(randnumbers[5], 6)">?</button><br>
+<button class="button button1" id=7 onclick="entered(randnumbers[6], 7)">?</button>
+<button class="button button1" id=8 onclick="entered(randnumbers[7], 8)">?</button><br>
+<button class="button button1" id=9 onclick="entered(randnumbers[8], 9)">?</button>
+<button class="button button1" id=10 onclick="entered(randnumbers[9], 10)">?</button>
+
+<h4 id="test"></h4>
+</center>
+</body>
+<script>
+exit = 0
+ct = 1
+msg = "Sequence Is At 0."
+document.getElementById("test").innerHTML = msg;
+function entered(numb, inid) {
+  if (exit == 1) {
+    return "exited"
+  }
+  if (ct == numb) {
+    ct = ct+1
+    document.getElementById(inid).style.background="#00aa00";
+  }
+  else {
+    ct = 1
+    clear()
+  }
+  numer = ct-1
+  if (ct == 11) {
+    exit = 1
+    msg = "Well Done You Got It!"
+  }
+  else {
+    msg = "Sequence Is At "+numer+"."
+  }
+  document.getElementById("test").innerHTML = msg;
+}
+function clear() {
+  document.getElementById(1).style.background="#000000";
+  document.getElementById(2).style.background="#000000";
+  document.getElementById(3).style.background="#000000";
+  document.getElementById(4).style.background="#000000";
+  document.getElementById(5).style.background="#000000";
+  document.getElementById(6).style.background="#000000";
+  document.getElementById(7).style.background="#000000";
+  document.getElementById(8).style.background="#000000";
+  document.getElementById(9).style.background="#000000";
+  document.getElementById(10).style.background="#000000";
+}
+</script>
+</html>
