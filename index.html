@@ -40,7 +40,7 @@ body {background-color:black}
 </script>
 <center>
   <h1 class="text">Sequence Game</h1>
-  <h4 class="text">Make All The Squares G Green In This Trial-and-Error Game!</h4>
+  <h4 class="text">Make All The Squares Green In This Trial-and-Error Game!</h4>
   <h4 class="text">Note: The First Item In The Sequence Is 1, From Right To Left, Up To Down.</h4>
 <button class="button" id="1" onclick="sequence(randnumbers[0], 1)">?</button>
 <button class="button" id="2" onclick="sequence(randnumbers[1], 2)">?</button><br>
@@ -53,7 +53,7 @@ body {background-color:black}
 <button class="button" id="9" onclick="sequence(randnumbers[8], 9)">?</button>
 <button class="button" id="10" onclick="sequence(randnumbers[9], 10)">?</button>
 
-<h4 id="view-text" class="text">Sequence Is At 0.</h4>
+<h4 id="view-text" class="text">The Sequence Is Currently At 0.</h4>
 </center>
 </body>
 <script>
@@ -85,7 +85,7 @@ async function sequence(numb, inid) {
     msg = "Well Done You Got It!"
   }
   else {
-    msg = "Sequence Is At "+num+"."
+    msg = "The Sequence Is Currently At "+num+"."
   }
   document.getElementById("view-text").innerHTML = msg;
 }
