@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sequencer</title>
+<title>Sequence Game</title>
 <style>
 .button {
   border: none;
-  color: white;
-  padding: 16px 32px;
+  color: black;
+  width: 70px;
+  height: 50px;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 6px 3px;
   transition-duration: 0.4s;
-  cursor: pointer;
+  border-radius: 8px;
+  background-color: white; 
+  
 }
-.button1 {border-radius: 8px;}
-.button1 {
-  background-color: rgb(0, 0, 0); 
+.text {
+  color:white
 }
+body {background-color:black}
 </style>
 </head>
 <body>
 <script>
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  const randnumbers = []
+  const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const randnumbers = [1,]
   function randlist() {
     i = 1
-    while (i < 11) {
-      randnumbers.splice(getRndInteger(0, 9), 0, numbers[i-1])
+    while (i < 10) {
+      randnumbers.splice(getRndInteger(1, 9), 0, numbers[i-1])
       i = i+1
     }
   }
@@ -38,58 +39,96 @@
   randlist()
 </script>
 <center>
-<button class="button button1" id=1 onclick="entered(randnumbers[0], 1)">?</button>
-<button class="button button1" id=2 onclick="entered(randnumbers[1], 2)">?</button><br>
-<button class="button button1" id=3 onclick="entered(randnumbers[2], 3)">?</button>
-<button class="button button1" id=4 onclick="entered(randnumbers[3], 4)">?</button><br>
-<button class="button button1" id=5 onclick="entered(randnumbers[4], 5)">?</button>
-<button class="button button1" id=6 onclick="entered(randnumbers[5], 6)">?</button><br>
-<button class="button button1" id=7 onclick="entered(randnumbers[6], 7)">?</button>
-<button class="button button1" id=8 onclick="entered(randnumbers[7], 8)">?</button><br>
-<button class="button button1" id=9 onclick="entered(randnumbers[8], 9)">?</button>
-<button class="button button1" id=10 onclick="entered(randnumbers[9], 10)">?</button>
+  <h1 class="text">Sequence Game</h1>
+  <h4 class="text">Make All The Squares G Green In This Trial-and-Error Game!</h4>
+  <h4 class="text">Note: The First Item In The Sequence Is 1, From Right To Left, Up To Down.</h4>
+<button class="button" id="1" onclick="sequence(randnumbers[0], 1)">?</button>
+<button class="button" id="2" onclick="sequence(randnumbers[1], 2)">?</button><br>
+<button class="button" id="3" onclick="sequence(randnumbers[2], 3)">?</button>
+<button class="button" id="4" onclick="sequence(randnumbers[3], 4)">?</button><br>
+<button class="button" id="5" onclick="sequence(randnumbers[4], 5)">?</button>
+<button class="button" id="6" onclick="sequence(randnumbers[5], 6)">?</button><br>
+<button class="button" id="7" onclick="sequence(randnumbers[6], 7)">?</button>
+<button class="button" id="8" onclick="sequence(randnumbers[7], 8)">?</button><br>
+<button class="button" id="9" onclick="sequence(randnumbers[8], 9)">?</button>
+<button class="button" id="10" onclick="sequence(randnumbers[9], 10)">?</button>
 
-<h4 id="test"></h4>
+<h4 id="view-text" class="text">Sequence Is At 0.</h4>
 </center>
 </body>
 <script>
 exit = 0
 ct = 1
-msg = "Sequence Is At 0."
-document.getElementById("test").innerHTML = msg;
-function entered(numb, inid) {
+async function sequence(numb, inid) {
   if (exit == 1) {
-    return "exited"
+    return
   }
-  if (ct == numb) {
-    ct = ct+1
-    document.getElementById(inid).style.background="#00aa00";
+  if (ct >= numb) {
+    if (ct == numb) {
+      ct = ct+1
+    }
+    if (ct == 2) {
+      clear()
+    }
+    document.getElementById(inid).style.background="#00CC00";
+    document.getElementById(inid).innerHTML = "✔"
   }
   else {
     ct = 1
     clear()
+    document.getElementById(inid).style.background="#CC0000";
+    document.getElementById(inid).innerHTML = "X"
   }
-  numer = ct-1
+  num = ct-1
   if (ct == 11) {
     exit = 1
     msg = "Well Done You Got It!"
   }
   else {
-    msg = "Sequence Is At "+numer+"."
+    msg = "Sequence Is At "+num+"."
   }
-  document.getElementById("test").innerHTML = msg;
+  document.getElementById("view-text").innerHTML = msg;
 }
 function clear() {
-  document.getElementById(1).style.background="#000000";
-  document.getElementById(2).style.background="#000000";
-  document.getElementById(3).style.background="#000000";
-  document.getElementById(4).style.background="#000000";
-  document.getElementById(5).style.background="#000000";
-  document.getElementById(6).style.background="#000000";
-  document.getElementById(7).style.background="#000000";
-  document.getElementById(8).style.background="#000000";
-  document.getElementById(9).style.background="#000000";
-  document.getElementById(10).style.background="#000000";
+  e = 1
+  while (e < 11) {
+    document.getElementById(e).style.background="#FFFFFF";
+    document.getElementById(e).innerHTML = "?"
+    e++
+  }
 }
+document.addEventListener('keydown', function(event) {
+if (event.key == "1") {
+  sequence(randnumbers[0], 1)
+}
+if (event.key == "2") {
+  sequence(randnumbers[1], 2)
+}
+if (event.key == "3") {
+  sequence(randnumbers[2], 3)
+}
+if (event.key == "4") {
+  sequence(randnumbers[3], 4)
+}
+if (event.key == "5") {
+  sequence(randnumbers[4], 5)
+}
+if (event.key == "6") {
+  sequence(randnumbers[5], 6)
+}
+if (event.key == "7") {
+  sequence(randnumbers[6], 7)
+}
+if (event.key == "8") {
+  sequence(randnumbers[7], 8)
+}
+if (event.key == "9") {
+  sequence(randnumbers[8], 9)
+}
+if (event.key == "0") {
+  sequence(randnumbers[9], 10)
+}
+
+})
 </script>
 </html>
